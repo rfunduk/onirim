@@ -1,0 +1,110 @@
+.card, .pile {
+  width: 160px;
+  height: 220px;
+  display: flex;
+  flex-shrink: 1;
+  align-items: top;
+  justify-content: left;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-right: 5px;
+  padding: 5px;
+  box-shadow: -1px 0px 3px rgba( 0,0,0, 0.3 );
+  border: 4px solid #333;
+  border-radius: 4px;
+
+  &.tiny {
+    border-width: 3px;
+    border-radius: 4px;
+  }
+}
+
+.pile {
+  box-shadow: none;
+  &.discard {
+    border: none;
+  }
+}
+
+.card {
+  background-size: cover;
+  background-position: center;
+
+  &.playable {
+    cursor: pointer;
+  }
+
+  z-index: 4000;
+  &.hovered {
+    z-index: 5000;
+    top: -10px;
+  }
+
+  &.tiny {
+    width: 80px;
+    height: 110px;
+  }
+
+  &::before {
+    content: ' ';
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  &.color-N { background-color: black; }
+  &.color-Y { background-color: brown; }
+  &.color-R { background-color: red; }
+  &.color-B { background-color: blue; }
+  &.color-G { background-color: green; }
+  &.symbol-N::before {  }
+  &.symbol-D::before {  }
+  &.symbol-M::before { background-image: url(../../images/M.svg); }
+  &.symbol-S::before { background-image: url(../../images/S.svg); }
+  &.symbol-K::before { background-image: url(../../images/K.svg); }
+
+  &.color-B { background-image: url(../../images/B.png); }
+  &.color-Y { background-image: url(../../images/Y.png); }
+  &.color-R { background-image: url(../../images/R.png); }
+  &.color-G { background-image: url(../../images/G.png); }
+  &.color-N { background-image: url(../../images/N.png); }
+
+  &.symbol-D::before {
+    margin: 12% auto;
+    width: 100%;
+    height: 80%;
+    background-position: center;
+    background-image: url(../../images/D.svg);
+  }
+
+  &.disabled::before {
+    opacity: 0.4;
+  }
+  &.dragging {
+    opacity: 0.2;
+    // background: transparent;
+    // border: 1px dashed #BBB;
+  }
+}
+
+.pile {
+  background: #CCC;
+  &.discard::before { content: 'DISCARD'; }
+  &.deck::before { content: 'DECK'; }
+
+  &.deck {
+    cursor: pointer;
+    &:hover { background: #C8C8C8; }
+    &.disabled:hover { background: #CCC; cursor: default; }
+  }
+  &.discard {
+    background: #EAEAEA;
+  }
+  &.isOver {
+    background: #FFF;
+    color: black;
+  }
+}

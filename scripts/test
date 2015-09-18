@@ -1,0 +1,5 @@
+NODE_ENV=test mocha \
+  --compilers js:babel/register \
+  --recursive \
+  --reporter spec \
+  --watch

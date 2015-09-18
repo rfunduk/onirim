@@ -1,0 +1,26 @@
+.game-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  .game-grid {
+    min-width: 1230px;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .game-area {
+    height: 100%;
+    flex-shrink: 0;
+    padding: 20px;
+
+    &.control {
+      width: 365px;
+    }
+    .play-area {
+      width: 100%;
+      // &.isOver { background: #DDD; }
+    }
+  }
+}

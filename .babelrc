@@ -1,0 +1,9 @@
+{
+  "stage": 0,
+  "nonStandard": true,
+  "comments": false,
+  "sourceMaps": true,
+  "optional": [
+    "optimisation.react.constantElements"
+  ]
+}
