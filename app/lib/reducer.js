@@ -1,6 +1,6 @@
 import { draw, play, discard, discardAll, discardTopFive,
          reshuffle, reorderProphecy, resolveProphecy } from './updates'
-import { newGame, forfeit } from './setup'
+import { newGame, devGame, forfeit } from './setup'
 
 export default function game( state, action ) {
   switch( action.type ) {
@@ -42,10 +42,8 @@ export default function game( state, action ) {
                ...forfeit( state ) }
 
     case 'NEW_GAME':
-      return newGame()
-
     default:
-      return { ...newGame( state ) }
+      return newGame( __DEV__ && devGame() )
 
   }
 }

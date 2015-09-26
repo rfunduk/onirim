@@ -1,6 +1,6 @@
 # ONIRIM
 
-Onirim is a solitaire card game based on [Onirim][Onirim] from
+`onirim` is a solitaire card game based on [Onirim][Onirim] from
 Z-Man Games. In Onirim you're trying to escape from sort of insane
 dreamworld by finding doors.
 
@@ -40,14 +40,20 @@ work with Node v0.12+ and npm 2, though.
     npm run start
 
 Then visit [localhost:5300](http://localhost:5300) in your browser.
-In development you'll get the same game every time by default so
-Redux DevTools can do its magic.
+In development you'll get the same game every time by default.
+
 
 ### Tests
 
 There are almost 100 tests!
 
     npm run test
+
+Also, code coverage!
+
+    npm run coverage
+    open coverage/lcov-report/index.html
+
 
 ### Production
 

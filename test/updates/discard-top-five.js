@@ -7,7 +7,7 @@ describe( 'updates', function() {
   describe( 'discardTopFive', function() {
     beforeEach( function() {
       this.game = {
-        deck: [ 'RD', 'NN-1', 'RS', 'RM', 'RK', 'BM', 'BS', 'YS', 'YM' ],
+        deck: [ 'RD', 'NN-1', 'RS', 'RM', 'RK', 'BM', 'BS', 'YS', 'YM', 'BD' ],
         limbo: [ 'RD', 'NN-2' ],
         activeLimbo: [ 'NN-2' ],
         hand: [],

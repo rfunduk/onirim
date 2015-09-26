@@ -16,6 +16,10 @@ describe( 'updates', function() {
       }
     } )
 
+    it( 'should not play if card not found', function() {
+      expect( () => play( this.game, 'NOPE' ) ).toThrow()
+    } )
+
     describe( 'sorting doors', function() {
       beforeEach( function() {
         this.game.doors = [ 'RD--1', 'GD' ]

@@ -1,0 +1,4 @@
+NODE_ENV=test istanbul cover _mocha -- \
+  --compilers js:babel/register \
+  --recursive \
+  --reporter min

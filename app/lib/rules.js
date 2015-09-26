@@ -4,7 +4,10 @@ import isEmpty from 'lodash/lang/isEmpty'
 import { HAND_SIZE, COLOR, SYMBOL } from './constants'
 import findCardIn from '../utils/find-card-in'
 
-export function canPlay( game, card ) {
+export function canPlay( game, id ) {
+  const { card, source } = findCardIn( id, { hand: game.hand, doors: game.doors } )
+  if( !card ) { return false }
+
   if( !isEmpty(game.limbo) ) {
     if( game.activeLimbo == null ) { return false }
 
@@ -17,12 +20,10 @@ export function canPlay( game, card ) {
 
     // you can only play a key of the same colour
     // if you draw a door
-    if( topLimbo[SYMBOL] == 'D' ) {
+    if( topLimbo[SYMBOL] == 'D' && source == 'hand' ) {
       // you can only play a key of the same colour
       return card[SYMBOL] == 'K' && card[COLOR] == topLimbo[COLOR]
     }
-
-    return false
   }
   else {
     // limbo is empty, so we can't play doors
@@ -114,5 +115,5 @@ export function canResolveProphecy( game ) {
 
 export function isInProphecy( game, id ) {
   const index = game.prophecy.indexOf( id )
-  return !!index
+  return index != -1
 }

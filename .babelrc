@@ -1,7 +1,7 @@
 {
   "stage": 0,
   "nonStandard": true,
-  "comments": false,
+  "auxiliaryCommentBefore": "istanbul ignore next",
   "sourceMaps": true,
   "optional": [
     "optimisation.react.constantElements"

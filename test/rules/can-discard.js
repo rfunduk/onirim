@@ -30,6 +30,9 @@ describe( 'rules', function() {
       this.game.hand.pop()
       expect( canDiscard( this.game, 'RM' ) ).toBeFalsy()
     } )
+    it( 'should not discard with a card not in hand', function() {
+      expect( canDiscard( this.game, 'NOPE' ) ).toBeFalsy()
+    } )
     it( 'should discard with a full hand', function() {
       expect( canDiscard( this.game, 'RM' ) ).toBeTruthy()
     } )

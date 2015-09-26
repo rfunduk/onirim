@@ -117,12 +117,12 @@ const NUMS = [
 ]
 const MAX = NUMS.length
 
-Math.__fakeRandomIndex = 0
-Math.random = function() {
-  return NUMS[Math.__fakeRandomIndex++ % MAX]
-}
+let __fakeRandomIndex = 0
 
 export default function fakeRandom( state ) {
-  console.log( 'Resetting Math.random(' + state + ')!' )
-  return Math.__fakeRandomIndex = state || 0
+  __fakeRandomIndex = state || 0
+  console.log( 'Resetting Math.random(' + __fakeRandomIndex + ')!' )
+  Math.random = function() {
+    return NUMS[__fakeRandomIndex++ % MAX]
+  }
 }

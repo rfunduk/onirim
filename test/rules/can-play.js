@@ -6,9 +6,14 @@ describe( 'rules', function() {
   describe( 'canPlay', function() {
     beforeEach( function() {
       this.game = {
+        doors: [],
         hand: [ 'RM', 'RS', 'RK', 'BK', 'GM' ],
         labyrinth: [ 'RS' ]
       }
+    } )
+
+    it( 'should not allow playing a card not in hand', function() {
+      expect( canPlay( this.game, 'NOPE' ) ).toBeFalsy()
     } )
 
     describe( 'empty limbo', function() {

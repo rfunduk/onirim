@@ -16,6 +16,11 @@ describe( 'updates', function() {
       }
     } )
 
+    it( 'should not discard if card not found', function() {
+      expect( () => discard( this.game, 'NOPE' ) ).toThrow()
+    } )
+
+
     it( 'should reset activeLimbo', function() {
       this.game.activeLimbo = 1
       const { activeLimbo } = discard( this.game, 'RK' )
