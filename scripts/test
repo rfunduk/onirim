@@ -1,5 +1,4 @@
-NODE_ENV=test mocha \
+NODE_ENV=test ${CMD-mocha} \
   --compilers js:babel/register \
   --recursive \
-  --reporter spec \
-  --watch
+  --reporter spec
