@@ -1,5 +1,3 @@
-import React from 'react'
-
 import shouldPureComponentUpdate from '../utils/pure-render'
 
 import map from 'lodash/collection/map'

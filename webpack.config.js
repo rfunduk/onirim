@@ -12,6 +12,7 @@ var plugins = [
   new webpack.EnvironmentPlugin('NODE_ENV'),
   new webpack.optimize.DedupePlugin(),
   new webpack.PrefetchPlugin('react'),
+  new webpack.ProvidePlugin( { React: 'react' } ),
   new webpack.DefinePlugin( { '__DEV__': !PRODUCTION } )
 ]
 
@@ -102,14 +103,6 @@ module.exports = {
       '.css', '.less',
     ]
   },
-  options: {
-    // overrides for .babelrc in production
-    babel: {
-      optional: PRODUCTION ?
-        [ 'optimisation.react.inlineElements' ] :
-        []
-    }
-  },
   module: {
     noParse: [],
     loaders: [
@@ -118,9 +111,7 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         include: __dirname,
-        loaders: PRODUCTION ?
-          ['babel'] :
-          ['react-hot', 'babel']
+        loaders: [ 'babel' ]
       },
 
       // styles

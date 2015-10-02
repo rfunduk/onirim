@@ -1,4 +1,5 @@
 import { bindActionCreators } from 'redux'
+import { ActionCreators as ReduxUndoActionCreators } from 'redux-undo'
 
 const action = ( type, ...props ) => ( ...args ) =>
   props.reduce( ( action, prop, i ) =>
@@ -6,7 +7,7 @@ const action = ( type, ...props ) => ( ...args ) =>
   )
 
 const GameActions = {
-  undo: action( 'UNDO' ),
+  undo: ReduxUndoActionCreators.undo,
   reshuffle: action( 'SHUFFLE' ),
   draw: action( 'DRAW' ),
   newGame: action( 'NEW_GAME' ),

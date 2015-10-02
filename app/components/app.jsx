@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { Provider, connect } from 'react-redux'
 
 import shouldPureComponentUpdate from '../utils/pure-render'
@@ -13,14 +11,14 @@ export default class App extends React.Component {
   shouldComponentUpdate = shouldPureComponentUpdate
 
   render() {
-    const { game, hasUndo } = this.props
-    const { dispatch } = this.props
+    const { game, dispatch, store } = this.props
+    const hasUndo = game.history.past.length > 0
     return (
       <div className='app-wrapper'>
-        <Provider store={this.props.store}>
-          <Game game={game} hasUndo={hasUndo}
+        <Provider store={store}>
+          <Game game={game.present} hasUndo={hasUndo}
                 actions={bindActions( dispatch )}
-                rules={bindRules( game )} />
+                rules={bindRules( game.present )} />
         </Provider>
       </div>
     )

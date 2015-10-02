@@ -1,46 +1,33 @@
-import React from 'react'
 import { render } from 'react-dom'
-import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import undoable from 'redux-undo'
 
 import compact from 'lodash/array/compact'
 
 import log from './utils/log'
-import oneStepUndo from './utils/one-step-undo'
-import shouldPureComponentUpdate from './utils/pure-render'
 
 import App from './components/app'
 
 // load fake randomization hack so that shuffling
 // doesn't break redux devtools time travelling
 // and we get the same game every time
-const fakeRandom = require( './utils/fake-random' )
-// set a seed if you want a different set of shuffles
-const SEED = 0
-
-function resetFakeRandomOnNewGame( reducer ) {
-  return ( state, action ) => {
-    if( action.type == 'NEW_GAME' ) {
-      // reinit fake random
-      fakeRandom( SEED )
-    }
-    return reducer( state, action )
-  }
-}
+import { resetFakeRandom, resetFakeRandomMiddleware } from './utils/fake-random'
+if( __DEV__ ) { resetFakeRandom() }
 
 function createReducer() {
   const game = require( './lib/reducer' )
-  const combiner = compose.apply( this, compact( [
-    oneStepUndo,
-    __DEV__ && resetFakeRandomOnNewGame,
-    combineReducers
-  ] ) )
-  return combiner( { game } )
+  return combineReducers( {
+    game: undoable( game, {
+      limit: 1,
+      initTypes: [ 'NEW_GAME' ]
+    } )
+  } )
 }
 
-const creator = compose.apply( null, compact( [
-  applyMiddleware( log ),
-] ) )( createStore )
+let middleware = [ log ]
+if( __DEV__ ) { middleware = [ ...middleware, resetFakeRandomMiddleware ] }
 
+const creator = applyMiddleware( ...middleware )( createStore )
 const store = creator( createReducer() )
 
 // hot reloading for store

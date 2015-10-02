@@ -1,5 +1,3 @@
-import React from 'react'
-
 const ICONS = {
   'UP_ARROW': (
     <svg width={16} height={16} viewBox='0 0 10 10'>

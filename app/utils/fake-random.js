@@ -116,13 +116,24 @@ const NUMS = [
   0.3475140556693077, 0.5388896185904741, 0.09108335641212761
 ]
 const MAX = NUMS.length
+const SEED = 0
 
-let __fakeRandomIndex = 0
+let __fakeRandomIndex = SEED
 
-export default function fakeRandom( state ) {
-  __fakeRandomIndex = state || 0
+export function resetFakeRandom() {
+  __fakeRandomIndex = SEED
   console.log( 'Resetting Math.random(' + __fakeRandomIndex + ')!' )
   Math.random = function() {
     return NUMS[__fakeRandomIndex++ % MAX]
+  }
+}
+
+export function resetFakeRandomMiddleware( { getState } ) {
+  return next => action => {
+    if( action.type == 'NEW_GAME' ) {
+      // reinit fake random
+      resetFakeRandom()
+    }
+    return next( action )
   }
 }

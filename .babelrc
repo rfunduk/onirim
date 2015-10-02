@@ -1,9 +1,36 @@
 {
   "stage": 0,
   "nonStandard": true,
-  "auxiliaryCommentBefore": "istanbul ignore next",
   "sourceMaps": true,
-  "optional": [
-    "optimisation.react.constantElements"
-  ]
+
+  "env": {
+    "test": {
+      "auxiliaryCommentBefore": "istanbul ignore next",
+    },
+    "production": {
+      "comments": false,
+      "optional": [
+        "optimisation.react.constantElements",
+        "optimisation.react.inlineElements"
+      ]
+    },
+    "development": {
+      "plugins": ["react-transform"],
+      "extra": {
+        "react-transform": {
+          "transforms": [
+            {
+              "transform": "react-transform-hmr",
+              "imports": ["react"],
+              "locals": ["module"]
+            },
+            {
+              "transform": "react-transform-catch-errors",
+              "imports": ["react", "redbox-react"]
+            }
+          ]
+        }
+      }
+    }
+  }
 }
