@@ -14,21 +14,19 @@ describe( 'rules', function() {
     } )
 
     it( 'should discard top five with a nightmare in limbo', function() {
-      this.game.limbo = [ 'NN' ]
-      this.game.activeLimbo = 'NN'
-      expect( canDiscardTopFive( this.game ) ).toBeTruthy()
+      const game = { ...this.game, activeLimbo: 'NN', limbo: [ 'NN' ] }
+      expect( canDiscardTopFive( game ) ).toBeTruthy()
     } )
     it( 'should not discard top five with a door in limbo', function() {
-      this.game.limbo = [ 'RD' ]
-      this.game.activeLimbo = 'RD'
-      expect( canDiscardTopFive( this.game ) ).toBeFalsy()
+      const game = { ...this.game, activeLimbo: 'RD', limbo: [ 'RD' ] }
+      expect( canDiscardTopFive( game ) ).toBeFalsy()
     } )
     it( 'should not discard all with empty limbo', function() {
       expect( canDiscardTopFive( this.game ) ).toBeFalsy()
     } )
     it( 'should not discard with less than 5 cards in the deck', function() {
-      this.game.deck.pop()
-      expect( canDiscardTopFive( this.game ) ).toBeFalsy()
+      const game = { ...this.game, deck: this.game.deck.slice(0, -1) }
+      expect( canDiscardTopFive( game ) ).toBeFalsy()
     } )
   } )
 

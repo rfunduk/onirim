@@ -20,10 +20,9 @@ describe( 'updates', function() {
       expect( () => discard( this.game, 'NOPE' ) ).toThrow()
     } )
 
-
     it( 'should reset activeLimbo', function() {
-      this.game.activeLimbo = 1
-      const { activeLimbo } = discard( this.game, 'RK' )
+      const game = { ...this.game, activeLimbo: 1 }
+      const { activeLimbo } = discard( game, 'RK' )
       expect( activeLimbo ).toEqual( null )
     } )
 
@@ -42,16 +41,13 @@ describe( 'updates', function() {
         this.game.doors = [ 'RD--1', 'GD' ]
       } )
       it( 'should sort when granted from limbo via key', function() {
-        this.game.limbo = [ 'RD--2' ]
-        this.game.activeLimbo = 'RD--2'
-        const { doors } = discard( this.game, 'RK' )
+        const game = { ...this.game, limbo: [ 'RD--2' ], activeLimbo: 'RD--2' }
+        const { doors } = discard( game, 'RK' )
         expect( doors ).toEqual( [ 'GD', 'RD--1', 'RD--2' ] )
       } )
       it( 'should sort when discarding a door against a nightmare', function() {
-        this.game.limbo = [ 'NN' ]
-        this.game.activeLimbo = 'NN'
-        this.game.doors = [ 'BD', 'GD', 'RD' ]
-        const { doors } = discard( this.game, 'GD' )
+        const game = { ...this.game, limbo: [ 'NN' ], activeLimbo: 'NN', doors: [ 'BD', 'GD', 'RD' ] }
+        const { doors } = discard( game, 'GD' )
         expect( doors ).toEqual( [ 'BD', 'RD' ] )
       } )
     } )
@@ -65,22 +61,22 @@ describe( 'updates', function() {
       } )
 
       it( 'should not trigger a second prophecy', function() {
-        this.game = { ...this.game, ...discard( this.game, 'RK' ) }
-        const { prophecy, hand, discarded, deck } = discard( this.game, 'BK' )
-        expect( prophecy ).toEqual( this.game.prophecy )
+        const game = { ...this.game, ...discard( this.game, 'RK' ) }
+        const { prophecy, hand, discarded, deck } = discard( game, 'BK' )
+        expect( prophecy ).toEqual( game.prophecy )
         expect( discarded ).toContain( 'RK' )
       } )
 
       it( 'should discard from prophecy', function() {
-        this.game.prophecy = [ 'NN', 'GD' ]
-        const { prophecy, discarded } = discard( this.game, 'NN' )
+        const game = { ...this.game, prophecy: [ 'NN', 'GD' ] }
+        const { prophecy, discarded } = discard( game, 'NN' )
         expect( prophecy ).toEqual( [ 'GD' ] )
         expect( discarded ).toContain( 'NN' )
       } )
 
       it( 'should instant loss when discarding a door from prophecy', function() {
-        this.game.prophecy = [ 'NN', 'GD' ]
-        const { status } = discard( this.game, 'GD' )
+        const game = { ...this.game, prophecy: [ 'NN', 'GD' ] }
+        const { status } = discard( game, 'GD' )
         expect( status ).toEqual( LOST )
       } )
     } )

@@ -12,30 +12,25 @@ describe( 'rules', function() {
     } )
 
     it( 'should not shuffle with emptly limbo', function() {
-      this.game.limbo = []
-      expect( canShuffle( this.game ) ).toBeFalsy()
+      const game = { ...this.game, limbo: [] }
+      expect( canShuffle( game ) ).toBeFalsy()
     } )
     it( 'should not shuffle with a non-full hand', function() {
-      this.game.limbo = [ 'RD' ]
-      this.game.activeLimbo = 'RD'
-      this.game.hand.pop()
-      expect( canShuffle( this.game ) ).toBeFalsy()
+      const game = { ...this.game, limbo: [ 'RD' ], activeLimbo: 'RD', hand: this.game.hand.slice(0, -1) }
+      expect( canShuffle( game ) ).toBeFalsy()
     } )
     it( 'should not shuffle with an active nightmare', function() {
-      this.game.limbo = [ 'NN' ]
-      this.game.activeLimbo = 'NN'
-      expect( canShuffle( this.game ) ).toBeFalsy()
+      const game = { ...this.game, limbo: [ 'NN' ], activeLimbo: 'NN' }
+      expect( canShuffle( game ) ).toBeFalsy()
     } )
 
     it( 'should shuffle with a full hand and an active door in limbo', function() {
-      this.game.limbo = [ 'RD' ]
-      this.game.activeLimbo = 'RD'
-      expect( canShuffle( this.game ) ).toBeTruthy()
+      const game = { ...this.game, limbo: [ 'RD' ], activeLimbo: 'RD' }
+      expect( canShuffle( game ) ).toBeTruthy()
     } )
     it( 'should shuffle with a full hand and a non-active door in limbo', function() {
-      this.game.limbo = [ 'RD' ]
-      this.game.activeLimbo = null
-      expect( canShuffle( this.game ) ).toBeTruthy()
+      const game = { ...this.game, limbo: [ 'RD' ], activeLimbo: null }
+      expect( canShuffle( game ) ).toBeTruthy()
     } )
   } )
 

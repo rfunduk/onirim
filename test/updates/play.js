@@ -25,112 +25,118 @@ describe( 'updates', function() {
         this.game.doors = [ 'RD--1', 'GD' ]
       } )
       it( 'should sort when granted from limbo via key', function() {
-        this.game.limbo = [ 'RD--2' ]
-        this.game.activeLimbo = 'RD--2'
-        const { doors } = play( this.game, 'RK' )
+        const game = { ...this.game, limbo: [ 'RD--2' ], activeLimbo: 'RD--2' }
+        const { doors } = play( game, 'RK' )
         expect( doors ).toEqual( [ 'GD', 'RD--1', 'RD--2' ] )
       } )
       it( 'should sort when granted via 3 in a row', function() {
-        this.game.labyrinth = [ 'RM--1', 'RS--1' ]
-        const { doors } = play( this.game, 'RK' )
+        const game = { ...this.game, labyrinth: [ 'RM--1', 'RS--1' ] }
+        const { doors } = play( game, 'RK' )
         expect( doors ).toEqual( [ 'GD', 'RD--1', 'RD' ] )
       } )
     } )
 
-    it( 'should reset activeLimbo', function() {
-      this.game.activeLimbo = 1
-      const { activeLimbo } = play( this.game, 'RK' )
-      expect( activeLimbo ).toEqual( null )
-    } )
-
-    it( 'plays into labyrinth', function() {
-      const { labyrinth, hand } = play( this.game, 'RK' )
-      expect( labyrinth ).toContain( 'RK' )
-      expect( hand ).toNotContain( 'RK' )
-    } )
-
-    it( 'grants a door on the third of a color in a row', function() {
-      this.game = play( this.game, 'RK' )
-      this.game = play( this.game, 'RM' )
-      const { labyrinth, hand, doors } = play( this.game, 'RS' )
-      expect( labyrinth ).toEqual( [ 'RK', 'RM', 'RS' ] )
-      expect( hand ).toEqual( [ 'BK' ] )
-      expect( doors ).toContain( 'RD' )
-    } )
-
-    it( 'does not grant another door on the 4th in a row', function() {
-      this.game.hand.push( 'RS--2' )
-      this.game = play( this.game, 'RK' )
-      this.game = play( this.game, 'RM' )
-      this.game = play( this.game, 'RS' )
-      const { labyrinth, hand, doors } = play( this.game, 'RS--2' )
-      expect( labyrinth ).toEqual( [ 'RK', 'RM', 'RS', 'RS--2' ] )
-      expect( doors ).toNotContain( 'RD--2' )
-    } )
-    it( 'back to back sets of the same colour', function() {
-      this.game.hand.push( 'RS--2', 'RM--3', 'RS--4' )
-      this.game = play( this.game, 'RK' )
-      this.game = play( this.game, 'RM' )
-      this.game = play( this.game, 'RS' )
-      this.game = play( this.game, 'RS--2' )
-      this.game = play( this.game, 'RM--3' )
-      const { doors } = play( this.game, 'RS--4' )
-      expect( doors ).toContain( 'RD--2' )
-    } )
-    it( 'grants back to back sets of different colours', function() {
-      this.game.hand.push( 'GS--2', 'GM--3', 'GS--4' )
-      this.game = play( this.game, 'RK' )
-      this.game = play( this.game, 'RM' )
-      this.game = play( this.game, 'RS' )
-      this.game = play( this.game, 'GS--2' )
-      this.game = play( this.game, 'GM--3' )
-      const { doors } = play( this.game, 'GS--4' )
-      expect( doors ).toContain( 'RD' )
-      expect( doors ).toContain( 'GD' )
-    } )
-    it( 'grants on a new set after an incomplete set', function() {
-      this.game.hand.push( 'GS--2', 'GM--3', 'GS--4' )
-      this.game = play( this.game, 'RK' )
-      this.game = play( this.game, 'RS' )
-      this.game = play( this.game, 'GS--2' )
-      this.game = play( this.game, 'GM--3' )
-      const { doors } = play( this.game, 'GS--4' )
-      expect( doors ).toNotContain( 'RD' )
-      expect( doors ).toContain( 'GD' )
-    } )
-
-    it( 'should win when completing the door set', function() {
-      this.game.doors = [ 1, 2, 3, 4, 5, 6, 7 ]
-      this.game = play( this.game, 'RK' )
-      this.game = play( this.game, 'RM' )
-      const { status } = play( this.game, 'RS' )
-      expect( status ).toEqual( WON )
-    } )
-
-    it( 'does not grant a door if a color sequence is broken', function() {
-      this.game = play( this.game, 'RK' )
-      this.game = play( this.game, 'BK' )
-      this.game = play( this.game, 'RM' )
-      const { labyrinth, hand, doors } = play( this.game, 'RS' )
-      expect( labyrinth ).toEqual( [ 'RK', 'BK', 'RM', 'RS' ] )
-      expect( hand ).toEqual( [] )
-      expect( doors ).toEqual( [] )
-    } )
-
-    describe( 'with a door in limbo', function() {
-      beforeEach( function() {
-        this.game.limbo = [ 'BD' ]
-        this.game.activeLimbo = 'BD'
+    describe( 'playing keys', function() {
+      it( 'should reset activeLimbo', function() {
+        const game = { ...this.game, activeLimbo: 1 }
+        const { activeLimbo } = play( game, 'RK' )
+        expect( activeLimbo ).toEqual( null )
       } )
 
-      it( 'should grant the door for a matching key', function() {
-        const { discarded, limbo, doors, hand } = play( this.game, 'BK' )
+      it( 'plays into labyrinth', function() {
+        const { labyrinth, hand } = play( this.game, 'RK' )
+        expect( labyrinth ).toContain( 'RK' )
+        expect( hand ).toNotContain( 'RK' )
+      } )
+    } )
+
+    describe( 'granting doors', function() {
+      it( 'grants a door on the third of a color in a row', function() {
+        let game = play( this.game, 'RK' )
+        game = play( game, 'RM' )
+        const { labyrinth, hand, doors } = play( game, 'RS' )
+        expect( labyrinth ).toEqual( [ 'RK', 'RM', 'RS' ] )
+        expect( hand ).toEqual( [ 'BK' ] )
+        expect( doors ).toContain( 'RD' )
+      } )
+
+      it( 'does not grant another door on the 4th in a row', function() {
+        let game = { ...this.game, hand: [ ...this.game.hand, 'RS--2' ] }
+        game = play( game, 'RK' )
+        game = play( game, 'RM' )
+        game = play( game, 'RS' )
+        const { labyrinth, hand, doors } = play( game, 'RS--2' )
+        expect( labyrinth ).toEqual( [ 'RK', 'RM', 'RS', 'RS--2' ] )
+        expect( doors ).toNotContain( 'RD--2' )
+      } )
+      it( 'grants for back to back sets of the same colour', function() {
+        let game = { ...this.game, hand: [ ...this.game.hand, 'RS--2', 'RM--3', 'RS--4' ] }
+        game = play( game, 'RK' )
+        game = play( game, 'RM' )
+        game = play( game, 'RS' )
+        game = play( game, 'RS--2' )
+        game = play( game, 'RM--3' )
+        const { doors } = play( game, 'RS--4' )
+        expect( doors ).toContain( 'RD--2' )
+      } )
+      it( 'grants for back to back sets of different colours', function() {
+        let game = { ...this.game, hand: [ ...this.game.hand, 'GS--2', 'GM--3', 'GS--4' ] }
+        game = play( game, 'RK' )
+        game = play( game, 'RM' )
+        game = play( game, 'RS' )
+        game = play( game, 'GS--2' )
+        game = play( game, 'GM--3' )
+        const { doors } = play( game, 'GS--4' )
+        expect( doors ).toContain( 'RD' )
+        expect( doors ).toContain( 'GD' )
+      } )
+      it( 'grants on a new set after an incomplete set', function() {
+        let game = { ...this.game, hand: [ ...this.game.hand, 'GS--2', 'GM--3', 'GS--4' ] }
+        game = play( game, 'RK' )
+        game = play( game, 'RS' )
+        game = play( game, 'GS--2' )
+        game = play( game, 'GM--3' )
+        const { doors } = play( game, 'GS--4' )
+        expect( doors ).toNotContain( 'RD' )
+        expect( doors ).toContain( 'GD' )
+      } )
+
+      it( 'does not grant a door if a color sequence is broken', function() {
+        let game = play( this.game, 'RK' )
+        game = play( game, 'BK' )
+        game = play( game, 'RM' )
+        const { labyrinth, hand, doors } = play( game, 'RS' )
+        expect( labyrinth ).toEqual( [ 'RK', 'BK', 'RM', 'RS' ] )
+        expect( hand ).toEqual( [] )
+        expect( doors ).toEqual( [] )
+      } )
+
+      it( 'should grant the door in limbo for a matching key', function() {
+        const game = { ...this.game, limbo: [ 'BD' ], activeLimbo: 'BD' }
+        const { discarded, limbo, doors, hand } = play( game, 'BK' )
         expect( discarded ).toContain( 'BK' )
         expect( doors ).toContain( 'BD' )
         expect( hand ).toNotContain( 'BK' )
         expect( hand.length ).toEqual( 3 )
         expect( limbo.length ).toEqual( 0 )
       } )
+
+      it( 'shuffles after granting a door', function() {
+        const originalOrder = this.game.deck
+        let game = play( this.game, 'RK' )
+        game = play( game, 'RM' )
+        const { labyrinth, hand, doors, deck } = play( game, 'RS' )
+        expect( doors ).toContain( 'RD' )
+        expect( deck ).toNotEqual( originalOrder )
+      } )
+    } )
+
+    it( 'should win when completing the door set', function() {
+      let game = { ...this.game, doors: [ 1, 2, 3, 4, 5, 6, 7 ] }
+      game = play( game, 'RK' )
+      game = play( game, 'RM' )
+      const { status } = play( game, 'RS' )
+      expect( status ).toEqual( WON )
     } )
 
     describe( 'with a nightmare in limbo', function() {
@@ -149,8 +155,8 @@ describe( 'updates', function() {
       } )
 
       it( 'should play a door against a nightmare', function() {
-        this.game.doors = [ 'RD' ]
-        const { doors, limbo, discarded } = play( this.game, 'RD' )
+        const game = { ...this.game, doors: [ 'RD' ] }
+        const { doors, limbo, discarded } = play( game, 'RD' )
         expect( doors ).toNotContain( 'RD' )
         expect( discarded ).toContain( 'RD' )
         expect( discarded ).toContain( 'NN' )

@@ -1,0 +1,54 @@
+.button {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: 2px;
+  border-width: 1px;
+  border-style: solid;
+  cursor: pointer;
+  vertical-align: top;
+  box-sizing: border-box;
+  height: 46px;
+  line-height: 46px;
+  padding: 0 22px;
+  color: #666;
+  font-size: 20px;
+  background-color: transparent;
+  border-color: #cecece;
+}
+.button:hover,
+.button:focus {
+  outline: 0;
+  color: #333;
+  border-color: #a8a8a8;
+}
+
+.button:disabled,
+.button:disabled:hover,
+.button:disabled:focus {
+  color: #BBB;
+  border-color: #DFDFDF;
+}
+
+.small-button {
+  vertical-align: middle;
+  font-size: 16px;
+  line-height: 20px;
+  height: auto;
+  padding: 3px 8px;
+}
+
+.quit-confirm-button {
+  border-color: #CC0000;
+  color: white;
+  background-color: #EE0000;
+  &:focus {
+    color: white;
+  }
+  &:hover {
+    color: white;
+    background-color: #F40000;
+    border-color: #CC0000;
+  }
+}

@@ -116,13 +116,7 @@ module.exports = {
 
       // styles
       {
-        test: /\.css$/,
-        loader: PRODUCTION ?
-          ETPlugin.extract('style', 'css') :
-          'style!css'
-      },
-      {
-        test: /\.less$/,
+        test: /\.(less|css)$/,
         loader: PRODUCTION ?
           ETPlugin.extract('style', 'css!less') :
           'style!css!less'

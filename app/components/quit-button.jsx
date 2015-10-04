@@ -1,5 +1,6 @@
-import shouldPureComponentUpdate from '../utils/pure-render'
 import classNames from 'classnames'
+
+import shouldPureComponentUpdate from '../utils/pure-render'
 
 export default class QuitButton extends React.Component {
   shouldComponentUpdate = shouldPureComponentUpdate
@@ -12,11 +13,12 @@ export default class QuitButton extends React.Component {
 
   render() {
     const { quitConfirm } = this.state
-    const quitClasses = classNames( 'small', { quitConfirm: this.state.quitConfirm } )
+    const classes = classNames( 'button', 'small-button', {
+      'quit-confirm-button': quitConfirm
+    } )
 
     return (
-      <button className={quitClasses}
-              onClick={this.quitMaybe}>
+      <button className={classes} onClick={this.quitMaybe}>
         QUIT{quitConfirm ? '?' : ''}
       </button>
     )

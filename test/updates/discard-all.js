@@ -15,28 +15,28 @@ describe( 'updates', function() {
     } )
 
     it( 'should reset activeLimbo', function() {
-      this.game.activeLimbo = 'NN'
-      const { activeLimbo } = discardAll( this.game )
+      const game = { ...this.game, activeLimbo: 'NN' }
+      const { activeLimbo } = discardAll( game )
       expect( activeLimbo ).toEqual( null )
     } )
 
     it( 'should replace your hand', function() {
-      let { hand, deck } = discardAll( this.game )
+      const { hand, deck } = discardAll( this.game )
       expect( hand ).toNotContain( 6 )
       expect( hand.length ).toEqual( 5 )
     } )
     it( 'should shuffle the door back into the deck', function() {
-      let { deck } = discardAll( this.game )
+      const { deck } = discardAll( this.game )
       expect( deck ).toContain( 'RD' )
     } )
     it( 'should discard the nightmare', function() {
-      let { discarded } = discardAll( this.game )
+      const { discarded } = discardAll( this.game )
       expect( discarded ).toContain( 'NN' )
     } )
 
     it( 'should be game over if we run out of cards', function() {
-      this.game.deck = [ 1, 2, 3 ]
-      let { status } = discardAll( this.game )
+      const game = { ...this.game, deck: [ 1, 2, 3 ] }
+      const { status } = discardAll( game )
       expect( status ).toEqual( LOST )
     } )
 

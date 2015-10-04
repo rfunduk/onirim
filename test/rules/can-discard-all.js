@@ -8,19 +8,16 @@ describe( 'rules', function() {
     beforeEach( function() { this.game = {} } )
 
     it( 'should discard all with a nightmare in limbo', function() {
-      this.game.limbo = [ 'NN' ]
-      this.game.activeLimbo = 'NN'
-      expect( canDiscardAll( this.game ) ).toBeTruthy()
+      const game = { ...this.game, activeLimbo: 'NN', limbo: [ 'NN' ] }
+      expect( canDiscardAll( game ) ).toBeTruthy()
     } )
     it( 'should not discard all with a door in limbo', function() {
-      this.game.limbo = [ 'RD' ]
-      this.game.activeLimbo = 'RD'
-      expect( canDiscardAll( this.game ) ).toBeFalsy()
+      const game = { ...this.game, activeLimbo: 'RD', limbo: [ 'RD' ] }
+      expect( canDiscardAll( game ) ).toBeFalsy()
     } )
     it( 'should not discard all with empty limbo', function() {
-      this.game.limbo = []
-      this.game.activeLimbo = null
-      expect( canDiscardAll( this.game ) ).toBeFalsy()
+      const game = { ...this.game, activeLimbo: null, limbo: [] }
+      expect( canDiscardAll( game ) ).toBeFalsy()
     } )
   } )
 

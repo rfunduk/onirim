@@ -28,17 +28,17 @@ describe( 'updates', function() {
     } )
 
     it( 'should shuffle the door back into the deck', function() {
-      let { deck } = discardTopFive( this.game )
+      const { deck } = discardTopFive( this.game )
       expect( deck ).toContain( 'RD' )
     } )
     it( 'should discard the nightmare', function() {
-      let { discarded } = discardTopFive( this.game )
+      const { discarded } = discardTopFive( this.game )
       expect( discarded ).toContain( 'NN-2' )
     } )
 
     it( 'should be game over if we run out of cards', function() {
-      this.game.deck = [ 'RM', 'RS' ]
-      let { status } = discardTopFive( this.game )
+      const game = { ...this.game, deck: [ 'RM', 'RS' ] }
+      const { status } = discardTopFive( game )
       expect( status ).toEqual( LOST )
     } )
 

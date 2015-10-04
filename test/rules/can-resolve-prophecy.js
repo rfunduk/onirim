@@ -16,8 +16,8 @@ describe( 'rules', function() {
       expect( canResolveProphecy( this.game ) ).toBeFalsy()
     } )
     it( 'should resolve prophecy when a card has been discarded', function() {
-      this.game.prophecy.pop()
-      expect( canResolveProphecy( this.game ) ).toBeTruthy()
+      const game = { ...this.game, prophecy: this.game.prophecy.slice(0, -1) }
+      expect( canResolveProphecy( game ) ).toBeTruthy()
     } )
   } )
 

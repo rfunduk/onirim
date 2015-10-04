@@ -53,7 +53,7 @@ export default class Game extends React.Component {
               <QuitButton forfeit={forfeit} />
               &nbsp;
               { hasUndo ?
-                  <button className='small' onClick={undo}>UNDO</button> :
+                  <button className='button small-button' onClick={undo}>UNDO</button> :
                   null }
             </h1>
 
@@ -192,7 +192,7 @@ export default class Game extends React.Component {
       <div className='won'>
         <div>
           <h1>WON</h1>
-          <button onClick={newGame}>GO AGAIN</button>
+          <button className='button won-lost-button' onClick={newGame}>GO AGAIN</button>
         </div>
       </div>
     )
@@ -203,7 +203,7 @@ export default class Game extends React.Component {
       <div className='lost'>
         <div>
           <h1>LOST</h1>
-          <button onClick={newGame}>GO AGAIN</button>
+          <button className='button won-lost-button' onClick={newGame}>GO AGAIN</button>
         </div>
       </div>
     )
@@ -216,11 +216,21 @@ export default class Game extends React.Component {
             canShuffle, canResolveProphecy } = this.props.rules
     return (
       <div className='buttons'>
-        { canDraw() ? <button className='small' onClick={draw}>DRAW CARD</button> : null }
-        { canResolveProphecy() ? <button className='small' onClick={resolveProphecy}>RESOLVE PROPHECY</button> : null }
-        { canDiscardAll() ? <button className='small' onClick={discardAll}>DISCARD HAND</button> : null }
-        { canDiscardTopFive() ? <button className='small' onClick={discardTopFive}>DISCARD TOP 5</button> : null }
-        { canShuffle() ? <button className='small' onClick={reshuffle}>SHUFFLE</button> : null }
+        { canDraw() &&
+          <button className='button small-button'
+                  onClick={draw}>DRAW CARD</button>}
+        { canResolveProphecy() &&
+          <button className='button small-button'
+                  onClick={resolveProphecy}>RESOLVE PROPHECY</button>}
+        { canDiscardAll() &&
+          <button className='button small-button'
+                  onClick={discardAll}>DISCARD HAND</button>}
+        { canDiscardTopFive() &&
+          <button className='button small-button'
+                  onClick={discardTopFive}>DISCARD TOP 5</button>}
+        { canShuffle() &&
+          <button className='button small-button'
+                  onClick={reshuffle}>SHUFFLE</button>}
       </div>
     )
   }

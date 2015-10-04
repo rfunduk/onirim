@@ -37,8 +37,8 @@ describe( 'rules', function() {
       } )
 
       it( 'should not allow playing doors', function() {
-        this.game.doors = [ 'RD' ]
-        expect( canPlay( this.game, 'RD' ) ).toBeFalsy()
+        const game = { ...this.game, doors: [ 'RD' ] }
+        expect( canPlay( game, 'RD' ) ).toBeFalsy()
       } )
 
     } )
@@ -91,8 +91,8 @@ describe( 'rules', function() {
         } )
 
         it( 'should allow playing a door', function() {
-          this.game.doors = [ 'RD' ]
-          expect( canPlay( this.game, 'RD' ) ).toBeTruthy()
+          const game = { ...this.game, doors: [ 'RD' ] }
+          expect( canPlay( game, 'RD' ) ).toBeTruthy()
         } )
       } )
 

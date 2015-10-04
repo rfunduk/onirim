@@ -21,13 +21,6 @@
   }
 }
 
-.pile {
-  box-shadow: none;
-  &.discard {
-    border: none;
-  }
-}
-
 .card {
   background-size: cover;
   background-position: center;
@@ -91,7 +84,9 @@
 }
 
 .pile {
+  box-shadow: none;
   background: #CCC;
+
   &.discard::before { content: 'DISCARD'; }
   &.deck::before { content: 'DECK'; }
 
@@ -101,6 +96,7 @@
     &.disabled:hover { background: #CCC; cursor: default; }
   }
   &.discard {
+    border: none;
     background: #EAEAEA;
   }
   &.isOver {
