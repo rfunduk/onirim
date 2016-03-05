@@ -4,6 +4,9 @@
 Z-Man Games. In Onirim you're trying to escape from sort of insane
 dreamworld by finding doors.
 
+<strong>You can play it [here](https://ryanfunduk.com/onirim).</strong>
+<small>But you might want to take a look at the rules first :)</small>
+
 ![Screenshot](./screenshot.png)
 
 [Onirim]: http://zmangames.com/product-details.php?id=1536
