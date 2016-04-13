@@ -1,6 +1,6 @@
 import expect from 'expect'
 import { discard } from '../../app/lib/updates'
-import { LOST } from '../../app/lib/constants'
+import { WON, LOST } from '../../app/lib/constants'
 
 describe( 'updates', function() {
 
@@ -114,6 +114,12 @@ describe( 'updates', function() {
         expect( doors ).toContain( 'RD' )
         expect( hand ).toNotContain( 'RK' )
         expect( limbo.length ).toEqual( 0 )
+      } )
+
+      it( 'should win when granting the last door', function() {
+        let game = { ...this.game, doors: [ 1, 2, 3, 4, 5, 6, 7 ] }
+        const { status } = discard( game, 'RK' )
+        expect( status ).toEqual( WON )
       } )
     } )
   } )

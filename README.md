@@ -48,7 +48,7 @@ In development you'll get the same game every time by default.
 
 ### Tests [![Build Status](https://travis-ci.org/rfunduk/onirim.svg?branch=master)](https://travis-ci.org/rfunduk/onirim)
 
-There are almost 100 tests!
+There are 100 tests!
 
     npm run test
 

@@ -24,15 +24,15 @@
     "less": "2.5.3",
 
     "mocha": "2.3.3",
-    "expect": "1.11.1",
-    "istanbul": "0.3.21",
+    "expect": "1.12.0",
+    "istanbul": "0.3.22",
 
     "redux": "3.0.2",
-    "redux-undo": "0.4.2",
+    "redux-undo": "0.4.3",
 
-    "react": "0.14.0-rc1",
-    "react-dom": "0.14.0-rc1",
-    "react-redux": "3.0.1",
+    "react": "0.14.0",
+    "react-dom": "0.14.0",
+    "react-redux": "3.1.0",
     "react-dnd": "1.1.8",
 
     "babel-plugin-react-transform": "1.1.1",

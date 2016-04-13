@@ -96,7 +96,6 @@ export function play( state, id ) {
     ;( { limbo, discarded } =
       doorAgainstNightmareMaybe( card, topLimbo, {limbo, discarded} ) )
   }
-  // console.log( {hand, labyrinth, doors} )
 
   doors = sortBy( doors, d => d[COLOR] )
 
@@ -148,6 +147,7 @@ export function discard( state, id ) {
       }
 
       doors = sortBy( doors, d => d[COLOR] )
+      if( doors.length == 8 ) { return { status: WON } }
       return { hand, limbo, deck, discarded, doors,
                prophecy, lastProphecySize, activeLimbo: null }
 
