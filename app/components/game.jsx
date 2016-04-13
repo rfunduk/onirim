@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import isEmpty from 'lodash/lang/isEmpty'
 
 import { DragDropContext } from 'react-dnd'
-import HTML5Backend from 'react-dnd/modules/backends/HTML5'
+import ReactDnDHTML5Backend from 'react-dnd-html5-backend'
 
 import shouldPureComponentUpdate from '../utils/pure-render'
 
@@ -21,7 +21,7 @@ import Prophecy from './prophecy'
 
 import QuitButton from './quit-button'
 
-@DragDropContext( HTML5Backend )
+@DragDropContext( ReactDnDHTML5Backend )
 export default class Game extends React.Component {
   shouldComponentUpdate = shouldPureComponentUpdate
 

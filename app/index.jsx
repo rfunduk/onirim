@@ -27,8 +27,10 @@ function createReducer() {
 let middleware = [ log ]
 if( __DEV__ ) { middleware = [ ...middleware, resetFakeRandomMiddleware ] }
 
-const creator = applyMiddleware( ...middleware )( createStore )
-const store = creator( createReducer() )
+const store = createStore(
+  createReducer(),
+  applyMiddleware( ...middleware )
+)
 
 // hot reloading for store
 if( module.hot ) {
