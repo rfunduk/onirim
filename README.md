@@ -9,7 +9,7 @@ dreamworld by finding doors.
 
 ![Screenshot](./screenshot.png)
 
-[Onirim]: http://zmangames.com/product-details.php?id=1536
+[Onirim]: http://www.zmangames.com/onirim-universe.html
 
 
 ## Rules
