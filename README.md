@@ -19,7 +19,7 @@ I'm not going to cover the rules here. If it's not possible
 to get a copy of the real game, visit Z-Man Games to get
 a copy of the [rules in PDF][PDF].
 
-[PDF]: http://zmangames.com/rulebooks/Onirim.pdf
+[PDF]: http://www.zmangames.com/uploads/4/7/1/7/47170931/onirim.pdf
 
 
 ## Usage
