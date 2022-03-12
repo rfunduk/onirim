@@ -9,7 +9,7 @@ dreamworld by finding doors.
 
 ![Screenshot](./screenshot.png)
 
-[Onirim]: http://www.zmangames.com/onirim-universe.html
+[Onirim]: https://www.zmangames.com/en/products/onirim/
 
 
 ## Rules
@@ -19,7 +19,7 @@ I'm not going to cover the rules here. If it's not possible
 to get a copy of the real game, visit Z-Man Games to get
 a copy of the [rules in PDF][PDF].
 
-[PDF]: http://www.zmangames.com/uploads/4/7/1/7/47170931/onirim.pdf
+[PDF]: https://images.zmangames.com/filer_public/fd/0e/fd0ef6a2-c019-47a2-910a-a556f03a3d02/zm4900_onirim_rules.pdf
 
 
 ## Usage
