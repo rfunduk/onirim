@@ -46,7 +46,7 @@ Then visit [localhost:5300](http://localhost:5300) in your browser.
 In development you'll get the same game every time by default.
 
 
-### Tests
+### Tests ![Build Status](https://github.com/rfunduk/onirim/badge.svg?branch=main)
 
 There are 100 tests!
 

@@ -16,5 +16,5 @@ jobs:
         with:
           node-version: 16
 
-      - run: npm install --no-audit --no-fund --silent
+      - run: npm ci --no-audit --no-fund --silent
       - run: npm run test:single
