@@ -1,4 +1,1 @@
-NODE_ENV=test istanbul cover _mocha -- \
-  --compilers js:babel/register \
-  --recursive \
-  --reporter min
+NODE_ENV=test nyc $REPORTERS scripts/test min

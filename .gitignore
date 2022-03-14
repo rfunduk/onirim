@@ -3,3 +3,4 @@ build/*
 !build/.gitkeep
 npm-debug.log
 coverage
+.nyc_output

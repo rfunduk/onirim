@@ -46,13 +46,13 @@ Then visit [localhost:5300](http://localhost:5300) in your browser.
 In development you'll get the same game every time by default.
 
 
-### Tests ![Build Status](https://github.com/rfunduk/onirim/actions/workflows/tests.yml/badge.svg?branch=main)
+### Tests & Coverage
 
-There are 100 tests!
+There are 100 tests! ![Tests](https://github.com/rfunduk/onirim/actions/workflows/tests.yml/badge.svg?branch=main)
 
     npm run test
 
-Also, code coverage!
+Also, code coverage! [![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/rfunduk/821e7285c63cfbd377febe05893e1046/raw/onirim__main.json)]
 
     npm run coverage
     open coverage/lcov-report/index.html

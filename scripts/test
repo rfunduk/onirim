@@ -1,4 +1,4 @@
 NODE_ENV=test ${CMD-mocha} \
   --compilers js:babel/register \
   --recursive \
-  --reporter spec
+  --reporter "${1-spec}"
