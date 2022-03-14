@@ -21,6 +21,7 @@ jobs:
       - name: Generate coverage results
         run: |
           COVERAGE=$(npm run --silent coverage:badge | tail -2 | head -1 | awk '{ print $3; }')
+          echo "COVERAGE=$(echo ${COVERAGE})" >> $GITHUB_ENV
 
       - name: Create the Badge
         uses: schneegans/dynamic-badges-action@v1.0.0
