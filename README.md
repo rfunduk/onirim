@@ -46,7 +46,7 @@ Then visit [localhost:5300](http://localhost:5300) in your browser.
 In development you'll get the same game every time by default.
 
 
-### Tests [![Build Status](https://travis-ci.org/rfunduk/onirim.svg?branch=main)](https://travis-ci.org/rfunduk/onirim)
+### Tests
 
 There are 100 tests!
 
