@@ -1,5 +1,4 @@
 import flattenDeep from 'lodash/array/flattenDeep'
-import compact from 'lodash/array/compact'
 import shuffle from 'lodash/collection/shuffle'
 import map from 'lodash/collection/map'
 import times from 'lodash/utility/times'

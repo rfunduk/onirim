@@ -3,7 +3,6 @@ import last from 'lodash/array/last'
 import take from 'lodash/array/take'
 import find from 'lodash/collection/find'
 import every from 'lodash/collection/every'
-import reject from 'lodash/collection/reject'
 import sortBy from 'lodash/collection/sortBy'
 import shuffle from 'lodash/collection/shuffle'
 import isEmpty from 'lodash/lang/isEmpty'
@@ -73,6 +72,7 @@ export function play( state, id ) {
         const door = find( deck, finder )
         const index = deck.indexOf( door )
 
+        /* istanbul ignore else */
         if( door ) {
           deck = deck.slice()
           deck.splice( index, 1 )
@@ -84,6 +84,7 @@ export function play( state, id ) {
   }
   // if limbo isn't empty, we are wanting to play a key
   // against a nightmare, or against a door
+  /* istanbul ignore else */
   else if( activeLimbo != null ) {
     const topLimbo = last( limbo )
 
@@ -306,13 +307,18 @@ function isExclusiveTopThree( cards, suit ) {
 
   for( var i = 0; i < cards.length; i++ ) {
     const card = cards[i]
+
     if( currentSet.length == 3 ||
         (lastCard && lastCard[COLOR] != card[COLOR]) ) {
       currentSet = []
       lastCard = null
     }
+
     const matches = !lastCard || card[COLOR] == lastCard[COLOR]
+
+    /* istanbul ignore else */
     if( matches ) { currentSet.push( card ) }
+
     lastCard = card
   }
 

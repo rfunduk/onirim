@@ -4,8 +4,10 @@ export const DOORS_TARGET = 8
 export const DISTRIBUTION = {
   // most cards are the same across suits
   D: 2, K: 3, M: 4,
+
   // except Suns which vary
   YS: 6, GS: 7, BS: 8, RS: 9,
+
   // and finally, 10 nightmares
   N: 10
 }
@@ -18,7 +20,7 @@ export const WON = 1
 export const LOST = 2
 
 export const OFFSETS = {
-  'TINY': 30,
-  'REGULAR': 45,
-  'COMPRESSED': 20
+  TINY: 30,
+  REGULAR: 45,
+  COMPRESSED: 20
 }

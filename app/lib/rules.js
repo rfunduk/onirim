@@ -11,18 +11,17 @@ export function canPlay( game, id ) {
   if( !isEmpty(game.limbo) ) {
     if( game.activeLimbo == null ) { return false }
 
-    const topLimbo = last( game.limbo )
-
     // you can only play keys or doors if you draw a nightmare card
-    if( topLimbo[SYMBOL] == 'N' ) {
+    if( game.activeLimbo[SYMBOL] == 'N' ) {
       return card[SYMBOL] == 'K' || card[SYMBOL] == 'D'
     }
 
     // you can only play a key of the same colour
     // if you draw a door
-    if( topLimbo[SYMBOL] == 'D' && source == 'hand' ) {
+    /* istanbul ignore else */
+    if( game.activeLimbo[SYMBOL] == 'D' && source == 'hand' ) {
       // you can only play a key of the same colour
-      return card[SYMBOL] == 'K' && card[COLOR] == topLimbo[COLOR]
+      return card[SYMBOL] == 'K' && card[COLOR] == game.activeLimbo[COLOR]
     }
   }
   else {
