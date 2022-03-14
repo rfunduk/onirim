@@ -54,8 +54,7 @@ There are 100 tests! ![Tests](https://github.com/rfunduk/onirim/actions/workflow
 
 Also, code coverage! ![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/rfunduk/821e7285c63cfbd377febe05893e1046/raw/onirim__main.json)
 
-    npm run coverage
-    open coverage/lcov-report/index.html
+    npm run coverage && open coverage/index.html
 
 
 ### Production

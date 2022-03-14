@@ -106,7 +106,7 @@ export function play( state, id ) {
 
 export function discard( state, id ) {
   let { hand, limbo, deck, doors, discarded,
-        prophecy, lastProphecySize, activeLimbo } = state
+        prophecy, lastProphecySize } = state
 
   const { card, source, index } = findCardIn( id, { hand, prophecy, doors } )
 
@@ -159,6 +159,7 @@ export function discard( state, id ) {
       prophecy.splice( index, 1 )
       discarded = [ ...discarded, card ]
 
+      /* istanbul ignore else */
       if( card[SYMBOL] == 'D' ) {
         return { status: LOST }
       }
