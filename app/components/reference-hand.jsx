@@ -17,38 +17,41 @@ export default class ReferenceHand extends React.Component {
 
   render() {
     const { hand } = this.props
-    const classes = classNames('reference-hand', 'play-area' )
-    const offsets = cardOffsets( hand, 0, true )
+    const classes = classNames('reference-hand', 'play-area')
+    const offsets = cardOffsets(hand, 0, true)
 
     return (
-      <div className={classes}
-           onMouseMove={hand.length > 1 ? this.onMouseMove : null}
-           onMouseOut={hand.length > 1 ? this.onMouseOut : null}>
+      <div
+        className={classes}
+        onMouseMove={hand.length > 1 ? this.onMouseMove : null}
+        onMouseOut={hand.length > 1 ? this.onMouseOut : null}>
         <h3>HAND <strong>{hand.length}/{HAND_SIZE}</strong></h3>
         <div className='card-container'>
           {
-            map( hand, ( card, i ) => {
+            map(hand, (card, i) => {
               return (
-                <Card key={card}
-                      offset={offsets[i]}
-                      tiny={true}
-                      hovered={card == this.state.hoveredCard}
-                      stacked={true}
-                      playable={false}
-                      card={card} />
+                <Card
+                  key={card}
+                  offset={offsets[i]}
+                  tiny={true}
+                  hovered={card == this.state.hoveredCard}
+                  stacked={true}
+                  playable={false}
+                  card={card}
+                />
               )
-            } )
+            })
           }
         </div>
       </div>
     )
   }
 
-  onMouseOut = () => { this.setState( { hoveredCard: null } ) }
+  onMouseOut = () => { this.setState({ hoveredCard: null }) }
 
-  onMouseMove = ( e ) => {
+  onMouseMove = (e) => {
     const { hand } = this.props
-    const hoveredCard = calculateHoveredCard( hand, findDOMNode(this), e, OFFSETS.TINY )
-    this.setState( { hoveredCard } )
+    const hoveredCard = calculateHoveredCard(hand, findDOMNode(this), e, OFFSETS.TINY)
+    this.setState({ hoveredCard })
   }
 }

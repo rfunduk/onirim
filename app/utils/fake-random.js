@@ -122,18 +122,18 @@ let __fakeRandomIndex = SEED
 
 export function resetFakeRandom() {
   __fakeRandomIndex = SEED
-  console.log( 'Resetting Math.random(' + __fakeRandomIndex + ')!' )
-  Math.random = function() {
+  console.log('Resetting Math.random(' + __fakeRandomIndex + ')!')
+  Math.random = function () {
     return NUMS[__fakeRandomIndex++ % MAX]
   }
 }
 
-export function resetFakeRandomMiddleware( { getState } ) {
+export function resetFakeRandomMiddleware({ getState }) {
   return next => action => {
-    if( action.type == 'NEW_GAME' ) {
+    if (action.type == 'NEW_GAME') {
       // reinit fake random
       resetFakeRandom()
     }
-    return next( action )
+    return next(action)
   }
 }

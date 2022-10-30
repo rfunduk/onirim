@@ -6,24 +6,24 @@ import shouldPureComponentUpdate from '../utils/pure-render'
 import { COLOR, SYMBOL } from '../lib/constants'
 
 const playSpec = {
-  beginDrag( props ) {
+  beginDrag(props) {
     return { card: props.card, orderable: props.orderable }
   },
-  canDrag( props ) {
+  canDrag(props) {
     return props.playable || props.orderable
   },
-  endDrag( props, monitor, component ) {
-    if( monitor.didDrop() ) {
+  endDrag(props, monitor, component) {
+    if (monitor.didDrop()) {
       const { card, target } = monitor.getDropResult()
       // console.log( 'DROP', monitor.getDropResult(), card, {props} )
-      switch( target ) {
+      switch (target) {
         case 'labyrinth':
         case 'limbo':
-          // the distinction is handed in `play`
-          props.play( card )
+          // the distinction is handled in `play`
+          props.play(card)
           break
         case 'discard':
-          props.discard( card )
+          props.discard(card)
           break
       }
     }
@@ -31,34 +31,34 @@ const playSpec = {
 }
 
 const prophecySpec = {
-  canDrop( props, monitor ) {
+  canDrop(props, monitor) {
     const { card, orderable } = monitor.getItem()
     return props.orderable && orderable
   },
-  hover( props, monitor ) {
+  hover(props, monitor) {
     const { card, orderable } = monitor.getItem()
-    if( !orderable || !props.orderable ) { return }
+    if (!orderable || !props.orderable) { return }
 
-    if( card !== props.card ) {
-      props.reorderProphecy( card, props.card )
+    if (card !== props.card) {
+      props.reorderProphecy(card, props.card)
     }
   }
 }
 
-@DropTarget( 'card', prophecySpec, ( connect, monitor ) => ({
+@DropTarget('card', prophecySpec, (connect, monitor) => ({
   connectDropTarget: connect.dropTarget(),
   isOver: monitor.isOver()
-}) )
-@DragSource( 'card', playSpec, ( connect, monitor ) => ({
+}))
+@DragSource('card', playSpec, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging()
-}) )
+}))
 export default class Card extends React.Component {
   shouldComponentUpdate = shouldPureComponentUpdate
 
   componentWillMount() {
     // give it a little bit of randomness
-    this.__rotate = Math.random() * ( 1 - -1 ) + -1
+    this.__rotate = Math.random() * (1.2 - -1.2) + -1.2
   }
 
   render() {
@@ -67,8 +67,8 @@ export default class Card extends React.Component {
     const { connectDragSource, connectDropTarget, isDragging } = this.props
     let { canPlay, onClick } = this.props
 
-    canPlay = playable && (!canPlay || canPlay( card ))
-    onClick = onClick || (canPlay ? () => play( card ) : null)
+    canPlay = playable && (!canPlay || canPlay(card))
+    onClick = onClick || (canPlay ? () => play(card) : null)
 
     const classes = classNames(
       'card', `color-${card[COLOR]}`, `symbol-${card[SYMBOL]}`,
@@ -88,8 +88,8 @@ export default class Card extends React.Component {
     } : {}
     style.transform = `rotate(${this.__rotate}deg)`
 
-    return connectDragSource( connectDropTarget(
+    return connectDragSource(connectDropTarget(
       <div className={classes} style={style}></div>
-    ) )
+    ))
   }
 }

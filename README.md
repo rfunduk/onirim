@@ -38,9 +38,8 @@ This is a pure JavaScript project using [React][React], [Redux][Redux],
 I'm using Node v4.1.0 and npm 3.3.2. It is likely to
 work with Node v0.12+ and npm 2, though.
 
-    git clone git@github.com:rfunduk/onirim.git && cd onirim
-    npm install
-    npm run start
+    git clone git@github.com:rfunduk/onirim.git onirim && cd $_
+    npm install && npm run start
 
 Then visit [localhost:5300](http://localhost:5300) in your browser.
 In development you'll get the same game every time by default.

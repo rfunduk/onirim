@@ -20,7 +20,7 @@ export const WON = 1
 export const LOST = 2
 
 export const OFFSETS = {
-  TINY: 30,
+  TINY: 20,
   REGULAR: 45,
   COMPRESSED: 20
 }

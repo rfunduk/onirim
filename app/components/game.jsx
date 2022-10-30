@@ -21,7 +21,7 @@ import Prophecy from './prophecy'
 
 import QuitButton from './quit-button'
 
-@DragDropContext( ReactDnDHTML5Backend )
+@DragDropContext(ReactDnDHTML5Backend)
 export default class Game extends React.Component {
   shouldComponentUpdate = shouldPureComponentUpdate
 
@@ -52,9 +52,9 @@ export default class Game extends React.Component {
               <span className='title'>ONIRIM</span>&nbsp;
               <QuitButton forfeit={forfeit} />
               &nbsp;
-              { hasUndo ?
-                  <button className='button small-button' onClick={undo}>UNDO</button> :
-                  null }
+              {hasUndo ?
+                <button className='button small-button' onClick={undo}>UNDO</button> :
+                null}
             </h1>
 
             <div className='pile-container'>
@@ -62,8 +62,8 @@ export default class Game extends React.Component {
               {this.discard()}
             </div>
 
+            {this.doors()}
             {main == 'prophecy' ? this.referenceHand() : null}
-            {main == 'hand' ? this.doors() : null}
           </div>
 
           <div className='play game-area'>
@@ -98,10 +98,12 @@ export default class Game extends React.Component {
     const { draw } = this.props.actions
     const { canDraw } = this.props.rules
     return (
-      <Deck type='DECK'
-            onClick={draw}
-            canDraw={canDraw}
-            count={deck.length} />
+      <Deck
+        type='DECK'
+        onClick={draw}
+        canDraw={canDraw}
+        count={deck.length}
+      />
     )
   }
 
@@ -109,22 +111,26 @@ export default class Game extends React.Component {
     const { discarded } = this.props.game
     const { canDiscard } = this.props.rules
     return (
-      <Discard type='DISCARD'
-               canDiscard={canDiscard}
-               count={discarded.length} />
+      <Discard
+        type='DISCARD'
+        canDiscard={canDiscard}
+        count={discarded.length}
+      />
     )
   }
 
-  hand( alt ) {
+  hand(alt) {
     const { hand } = this.props.game
     const { play, discard } = this.props.actions
     const { canPlay } = this.props.rules
 
     return (
-      <Hand hand={hand}
-            canPlay={canPlay}
-            play={play}
-            discard={discard} />
+      <Hand
+        hand={hand}
+        canPlay={canPlay}
+        play={play}
+        discard={discard}
+      />
     )
   }
 
@@ -139,35 +145,36 @@ export default class Game extends React.Component {
     const { doors } = this.props.game
     const { play, discard } = this.props.actions
     const { canPlay } = this.props.rules
-    return <Doors doors={doors}
-                  canPlay={canPlay}
-                  play={play}
-                  discard={discard} />
+    return (
+      <Doors
+        doors={doors}
+        canPlay={canPlay}
+        play={play}
+        discard={discard}
+      />
+    )
   }
 
   labyrinth() {
     const { labyrinth } = this.props.game
     const { canPlay } = this.props.rules
 
-    return (
-      <Labyrinth labyrinth={labyrinth}
-                 canPlay={canPlay} />
-    )
+    return <Labyrinth labyrinth={labyrinth} canPlay={canPlay} />
   }
 
   limbo() {
     const { limbo, activeLimbo } = this.props.game
-    const { canPlay, canShuffle, canDiscardAll,
-            canDiscardTopFive } = this.props.rules
-    const { discard, reshuffle, discardAll,
-            discardTopFive } = this.props.actions
+    const { canPlay, canShuffle, } = this.props.rules
+    const { reshuffle } = this.props.actions
 
     return (
-      <Limbo limbo={limbo}
-             activeLimbo={activeLimbo}
-             reshuffle={reshuffle}
-             canShuffle={canShuffle}
-             canPlay={canPlay} />
+      <Limbo
+        limbo={limbo}
+        activeLimbo={activeLimbo}
+        reshuffle={reshuffle}
+        canShuffle={canShuffle}
+        canPlay={canPlay}
+      />
     )
   }
 
@@ -177,12 +184,14 @@ export default class Game extends React.Component {
     const { discard, resolveProphecy, reorderProphecy } = this.props.actions
 
     return (
-      <Prophecy prophecy={prophecy}
-                discard={discard}
-                isInProphecy={isInProphecy}
-                canResolveProphecy={canResolveProphecy}
-                reorderProphecy={reorderProphecy}
-                resolveProphecy={resolveProphecy} />
+      <Prophecy
+        prophecy={prophecy}
+        discard={discard}
+        isInProphecy={isInProphecy}
+        canResolveProphecy={canResolveProphecy}
+        reorderProphecy={reorderProphecy}
+        resolveProphecy={resolveProphecy}
+      />
     )
   }
 
@@ -211,33 +220,38 @@ export default class Game extends React.Component {
 
   actions() {
     const { discardAll, discardTopFive, reshuffle,
-            resolveProphecy, draw } = this.props.actions
+      resolveProphecy, draw } = this.props.actions
     const { canDiscardAll, canDiscardTopFive, canDraw,
-            canShuffle, canResolveProphecy } = this.props.rules
+      canShuffle, canResolveProphecy } = this.props.rules
     return (
       <div className='buttons'>
-        { canDraw() &&
-          <button className='button small-button'
-                  onClick={draw}>DRAW CARD</button>}
-        { canResolveProphecy() &&
-          <button className='button small-button'
-                  onClick={resolveProphecy}>RESOLVE PROPHECY</button>}
-        { canDiscardAll() &&
-          <button className='button small-button'
-                  onClick={discardAll}>DISCARD HAND</button>}
-        { canDiscardTopFive() &&
-          <button className='button small-button'
-                  onClick={discardTopFive}>DISCARD TOP 5</button>}
-        { canShuffle() &&
-          <button className='button small-button'
-                  onClick={reshuffle}>SHUFFLE</button>}
+        {canDraw() &&
+          <button
+            className='button small-button'
+            onClick={draw}>DRAW CARD</button>}
+        {canResolveProphecy() &&
+          <button
+            className='button small-button'
+            onClick={resolveProphecy}>RESOLVE PROPHECY</button>}
+        {canDiscardAll() &&
+          <button
+            className='button small-button'
+            onClick={discardAll}>DISCARD HAND</button>}
+        {canDiscardTopFive() &&
+          <button
+            className='button small-button'
+            onClick={discardTopFive}>DISCARD TOP 5</button>}
+        {canShuffle() &&
+          <button
+            className='button small-button'
+            onClick={reshuffle}>SHUFFLE</button>}
       </div>
     )
   }
 
   info() {
     const { prophecy, lastProphecySize } = this.props.game
-    if( prophecy.length > 0 && prophecy.length == lastProphecySize ) {
+    if (prophecy.length > 0 && prophecy.length == lastProphecySize) {
       return <small>DISCARD ONE</small>
     }
     else {

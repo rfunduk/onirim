@@ -16,14 +16,16 @@ export default class Hand extends React.Component {
       <div className='hand play-area'>
         <div className='card-container'>
           {
-            map( hand, ( card, i ) =>
-              <Card key={card} card={card}
-                    index={i}
-                    stacked={false}
-                    playable={true}
-                    canPlay={canPlay}
-                    play={play}
-                    discard={discard} />
+            map(hand, (card, i) =>
+              <Card
+                key={card} card={card}
+                index={i}
+                stacked={false}
+                playable={true}
+                canPlay={canPlay}
+                play={play}
+                discard={discard}
+              />
             )
           }
         </div>

@@ -1,8 +1,8 @@
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config');
+var webpack = require('webpack')
+var WebpackDevServer = require('webpack-dev-server')
+var config = require('./webpack.config')
 
-var server = new WebpackDevServer( webpack( config ), {
+var server = new WebpackDevServer(webpack(config), {
   hot: true,
   historyApiFallback: true,
   stats: {
@@ -14,9 +14,9 @@ var server = new WebpackDevServer( webpack( config ), {
     chunks: true,
     chunkModules: false
   }
-} );
+})
 
-server.listen( 5300, 'localhost', function( err, result ) {
-  if( err ) { console.log(err); }
-  console.log('Webpack Dev Server ready on port 5300...');
-} );
+server.listen(5300, 'localhost', function (err, result) {
+  if (err) { console.log(err) }
+  console.log('Webpack Dev Server ready on port 5300...')
+})

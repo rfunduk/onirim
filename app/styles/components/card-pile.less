@@ -16,7 +16,7 @@
   border-radius: 4px;
 
   &.tiny {
-    border-width: 3px;
+    border-width: 2px;
     border-radius: 4px;
   }
 }
@@ -36,8 +36,12 @@
   }
 
   &.tiny {
-    width: 80px;
-    height: 110px;
+    width: 36px;
+    height: 50px;
+    &::before {
+      width: 15px;
+      height: 15px;
+    }
   }
 
   &::before {
@@ -53,8 +57,7 @@
   &.color-R { background-color: red; }
   &.color-B { background-color: blue; }
   &.color-G { background-color: green; }
-  &.symbol-N::before {  }
-  &.symbol-D::before {  }
+
   &.symbol-M::before { background-image: url(../../images/M.svg); }
   &.symbol-S::before { background-image: url(../../images/S.svg); }
   &.symbol-K::before { background-image: url(../../images/K.svg); }
@@ -65,6 +68,7 @@
   &.color-G { background-image: url(../../images/G.png); }
   &.color-N { background-image: url(../../images/N.png); }
 
+  &.symbol-N::before {  }
   &.symbol-D::before {
     margin: 12% auto;
     width: 100%;

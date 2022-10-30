@@ -19,42 +19,44 @@ export default class Doors extends React.Component {
     const { doors } = this.props
     const { canPlay } = this.props
     const { play, discard } = this.props
-    const classes = classNames( 'doors', 'play-area' )
-    const offsets = cardOffsets( doors, 0, true )
+    const classes = classNames('doors', 'play-area')
+    const offsets = cardOffsets(doors, 0, true)
 
     return (
       <div className={classes}
-           onMouseMove={doors.length > 1 ? this.onMouseMove : null}
-           onMouseOut={doors.length > 1 ? this.onMouseOut : null}>
+        onMouseMove={doors.length > 1 ? this.onMouseMove : null}
+        onMouseOut={doors.length > 1 ? this.onMouseOut : null}>
         <h3>DOORS <strong>{doors.length}/{DOORS_TARGET}</strong></h3>
         <div className='card-container'>
           {
-            map( doors, ( card, i ) => {
-              const playable = canPlay( card )
+            map(doors, (card, i) => {
+              const playable = canPlay(card)
               return (
-                <Card key={card}
-                      offset={offsets[i]}
-                      tiny={true}
-                      hovered={playable && this.state.hoveredCard == card}
-                      stacked={true}
-                      playable={playable}
-                      canPlay={canPlay}
-                      card={card}
-                      play={play}
-                      discard={discard} />
+                <Card
+                  key={card}
+                  offset={offsets[i]}
+                  tiny={true}
+                  hovered={playable && this.state.hoveredCard == card}
+                  stacked={true}
+                  playable={playable}
+                  canPlay={canPlay}
+                  card={card}
+                  play={play}
+                  discard={discard}
+                />
               )
-            } )
+            })
           }
         </div>
       </div>
     )
   }
 
-  onMouseOut = () => { this.setState( { hoveredCard: null } ) }
+  onMouseOut = () => { this.setState({ hoveredCard: null }) }
 
-  onMouseMove = ( e ) => {
+  onMouseMove = (e) => {
     const { doors } = this.props
-    const hoveredCard = calculateHoveredCard( doors, findDOMNode(this), e, OFFSETS.TINY )
-    this.setState( { hoveredCard } )
+    const hoveredCard = calculateHoveredCard(doors, findDOMNode(this), e, OFFSETS.TINY)
+    this.setState({ hoveredCard })
   }
 }

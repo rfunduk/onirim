@@ -6,7 +6,7 @@ import bindActions from '../utils/bind-actions'
 
 import Game from './game'
 
-@connect( _ => _ )
+@connect(_ => _)
 export default class App extends React.Component {
   shouldComponentUpdate = shouldPureComponentUpdate
 
@@ -16,9 +16,12 @@ export default class App extends React.Component {
     return (
       <div className='app-wrapper'>
         <Provider store={store}>
-          <Game game={game.present} hasUndo={hasUndo}
-                actions={bindActions( dispatch )}
-                rules={bindRules( game.present )} />
+          <Game
+            game={game.present}
+            hasUndo={hasUndo}
+            actions={bindActions(dispatch)}
+            rules={bindRules(game.present)}
+          />
         </Provider>
       </div>
     )
