@@ -5,15 +5,15 @@ var ETPlugin = require('extract-text-webpack-plugin')
 var CompressionPlugin = require('compression-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
-var outputDir = path.join( __dirname, './build' )
+var outputDir = path.join(__dirname, './build')
 var PRODUCTION = process.env.NODE_ENV == 'production'
 
 var plugins = [
   new webpack.EnvironmentPlugin('NODE_ENV'),
   new webpack.optimize.DedupePlugin(),
   new webpack.PrefetchPlugin('react'),
-  new webpack.ProvidePlugin( { React: 'react' } ),
-  new webpack.DefinePlugin( { '__DEV__': !PRODUCTION } )
+  new webpack.ProvidePlugin({ React: 'react' }),
+  new webpack.DefinePlugin({ '__DEV__': !PRODUCTION })
 ]
 
 var aliases = {
@@ -28,18 +28,18 @@ var entry = [
   './app/index.less'
 ]
 
-if( PRODUCTION ) {
+if (PRODUCTION) {
   // in production load minified react
   // aliases.react = 'react/dist/react.min'
   // aliases['react-dom'] = 'react/../../lib/ReactDOMClient'
 
-  plugins.push( new HtmlWebpackPlugin( {
+  plugins.push(new HtmlWebpackPlugin({
     title: 'ONIRIM',
     template: 'app/template.index.html'
-  } ) )
-  plugins.push( new ETPlugin( 'app.[hash].css' ) )
-  plugins.push( new webpack.optimize.OccurenceOrderPlugin() )
-  plugins.push( new webpack.optimize.UglifyJsPlugin( {
+  }))
+  plugins.push(new ETPlugin('app.[hash].css'))
+  plugins.push(new webpack.optimize.OccurenceOrderPlugin())
+  plugins.push(new webpack.optimize.UglifyJsPlugin({
     sourceMap: false,
     compress: {
       dead_code: true,
@@ -49,12 +49,12 @@ if( PRODUCTION ) {
       comparisons: true,
       booleans: true,
       loops: true,
-      drop_console: true
+      drop_console: false
     },
     screw_ie8: true,
     comments: false,
     exclude: new RegExp(/min\.js$/),
-  } ) )
+  }))
   // plugins.push( new CompressionPlugin( {
   //   asset: '{file}.gz',
   //   algorithm: 'gzip',
@@ -69,8 +69,8 @@ else {
     'webpack-dev-server/client?http://localhost:5300',
     'webpack/hot/only-dev-server'
   )
-  plugins.unshift( new webpack.HotModuleReplacementPlugin() )
-  plugins.unshift( new webpack.NoErrorsPlugin() )
+  plugins.unshift(new webpack.HotModuleReplacementPlugin())
+  plugins.unshift(new webpack.NoErrorsPlugin())
 }
 
 module.exports = {
@@ -96,7 +96,7 @@ module.exports = {
   resolve: {
     unsafeCache: true,
     alias: aliases,
-    modulesDirectories: [ 'node_modules' ],
+    modulesDirectories: ['node_modules'],
     extensions: [
       '',
       '.js', '.jsx',
@@ -111,7 +111,7 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         include: __dirname,
-        loaders: [ 'babel' ]
+        loaders: ['babel']
       },
 
       // styles
